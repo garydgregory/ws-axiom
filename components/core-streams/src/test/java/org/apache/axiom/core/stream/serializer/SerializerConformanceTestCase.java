@@ -28,6 +28,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.axiom.core.stream.XmlReader;
 import org.apache.axiom.core.stream.dom.input.DOMInput;
 import org.apache.axiom.ts.xml.XMLSample;
+import org.apache.commons.xml.secure.SecureDocumentBuilderFactory;
 import org.junit.jupiter.api.function.Executable;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
@@ -38,8 +39,7 @@ public class SerializerConformanceTestCase implements Executable {
 
     @Override
     public void execute() throws Throwable {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
+        DocumentBuilderFactory factory = SecureDocumentBuilderFactory.newNSInstance();
         factory.setExpandEntityReferences(false);
         Document document = factory.newDocumentBuilder().parse(sample.getUrl().toString());
         StringWriter sw = new StringWriter();

@@ -34,12 +34,13 @@ import javax.xml.stream.XMLOutputFactory;
 import org.apache.axiom.testing.multiton.Instances;
 import org.apache.axiom.testing.multiton.Multiton;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.xml.secure.SecureXMLInputFactory;
 
 public abstract class StAXImplementation extends Multiton {
     public static final StAXImplementation JRE = new StAXImplementation("JRE") {
         @Override
         public XMLInputFactory newXMLInputFactory() {
-            return XMLInputFactory.newDefaultFactory();
+            return SecureXMLInputFactory.newDefaultFactory();
         }
 
         @Override

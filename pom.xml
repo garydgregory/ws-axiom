@@ -18,25 +18,25 @@
   ~ under the License.
   -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+   <modelVersion>4.0.0</modelVersion>
 
-    <parent>
+   <parent>
         <groupId>org.apache</groupId>
         <artifactId>apache</artifactId>
         <version>39</version>
     </parent>
 
-    <groupId>org.apache.ws.commons.axiom</groupId>
-    <artifactId>axiom</artifactId>
-    <version>2.1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+   <groupId>org.apache.ws.commons.axiom</groupId>
+   <artifactId>axiom</artifactId>
+   <version>2.1.0-SNAPSHOT</version>
+   <packaging>pom</packaging>
 
-    <name>Axiom</name>
-    <description>The root/parent POM for Apache Axiom</description>
-    <url>http://ws.apache.org/axiom/</url>
-    <inceptionYear>2004</inceptionYear>
+   <name>Axiom</name>
+   <description>The root/parent POM for Apache Axiom</description>
+   <url>http://ws.apache.org/axiom/</url>
+   <inceptionYear>2004</inceptionYear>
 
-    <developers>
+   <developers>
         <developer>
             <name>Saminda Abeyruwan</name>
             <id>saminda</id>
@@ -190,7 +190,7 @@
             <organization>WSO2</organization>
         </developer>
     </developers>
-    <contributors>
+   <contributors>
         <contributor>
             <name>Dharshana Dias</name>
             <email />
@@ -212,7 +212,7 @@
         </contributor>
     </contributors>
 
-    <mailingLists>
+   <mailingLists>
         <mailingList>
             <name>Users</name>
             <subscribe>users-subscribe@ws.apache.org</subscribe>
@@ -235,7 +235,7 @@
         </mailingList>
     </mailingLists>
 
-    <modules>
+   <modules>
         <module>buildutils</module>
         <module>axiom-api</module>
         <module>axiom-compat</module>
@@ -260,24 +260,24 @@
         <module>jakarta-bom</module>
     </modules>
 
-    <scm>
+   <scm>
         <connection>scm:git:https://gitbox.apache.org/repos/asf/ws-axiom.git</connection>
         <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/ws-axiom.git</developerConnection>
         <url>https://gitbox.apache.org/repos/asf?p=ws-axiom.git;a=summary</url>
       <tag>HEAD</tag>
   </scm>
-    <issueManagement>
+   <issueManagement>
         <system>JIRA</system>
         <url>http://issues.apache.org/jira/browse/AXIOM</url>
     </issueManagement>
-    <distributionManagement>
+   <distributionManagement>
         <site>
             <id>website</id>
             <url>scm:svn:https://svn.apache.org/repos/asf/webservices/website/axiom-staging</url>
         </site>
     </distributionManagement>
 
-    <properties>
+   <properties>
         <javaVersion>17</javaVersion>
         <!-- A more recent Java version is required by some of the Maven plugins in the build. -->
         <minimalJavaBuildVersion>21</minimalJavaBuildVersion>
@@ -303,8 +303,13 @@
         <project.build.outputTimestamp>2025-01-28T03:23:30Z</project.build.outputTimestamp>
     </properties>
 
-    <dependencyManagement>
+   <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-secure-xml</artifactId>
+                <version>1.0.0</version>
+            </dependency>
             <dependency>
                 <groupId>commons-logging</groupId>
                 <artifactId>commons-logging</artifactId>
@@ -571,7 +576,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <repositories>
+   <repositories>
         <!-- Need to declare this here so that Maven can download snapshot versions of the parent POM -->
         <repository>
             <id>apache.snapshots</id>
@@ -589,7 +594,7 @@
             </releases>
         </repository>
     </repositories>
-    <pluginRepositories>
+   <pluginRepositories>
         <pluginRepository>
             <id>apache.snapshots</id>
             <name>Apache Snapshot Repository</name>
@@ -607,7 +612,7 @@
         </pluginRepository>
     </pluginRepositories>
 
-    <build>
+   <build>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -1252,7 +1257,7 @@
         </plugins>
     </build>
 
-    <reporting>
+   <reporting>
         <plugins>
             <plugin>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -1270,7 +1275,7 @@
         </plugins>
     </reporting>
 
-    <profiles>
+   <profiles>
         <profile>
             <id>apache-release</id>
             <build>

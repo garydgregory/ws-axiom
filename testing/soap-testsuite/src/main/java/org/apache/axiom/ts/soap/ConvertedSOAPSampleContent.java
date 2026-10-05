@@ -27,11 +27,12 @@ import java.util.Map;
 import javax.xml.XMLConstants;
 import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.apache.axiom.testing.multiton.Multiton;
 import org.apache.axiom.ts.xml.ComputedMessageContent;
+import org.apache.commons.xml.secure.SecureDocumentBuilderFactory;
+import org.apache.commons.xml.secure.SecureTransformerFactory;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -59,8 +60,7 @@ final class ConvertedSOAPSampleContent extends ComputedMessageContent {
 
     @Override
     protected void buildContent(OutputStream out) throws Exception {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
+        DocumentBuilderFactory factory = SecureDocumentBuilderFactory.newNSInstance();
         Document document;
         InputStream in = soap12Message.getInputStream();
         try {
@@ -69,7 +69,9 @@ final class ConvertedSOAPSampleContent extends ComputedMessageContent {
             in.close();
         }
         processSOAPElement(document.getDocumentElement(), SOAPElementType.ENVELOPE);
-        TransformerFactory.newInstance().newTransformer().transform(new DOMSource(document), new StreamResult(out));
+        SecureTransformerFactory.newInstance()
+                .newTransformer()
+                .transform(new DOMSource(document), new StreamResult(out));
     }
 
     private static void processSOAPElement(Element element, SOAPElementType type) {

@@ -21,10 +21,10 @@ package org.apache.axiom.ts.springws.scenario.wsadom;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import org.apache.axiom.ts.springws.scenario.ScenarioTestCase;
+import org.apache.commons.xml.secure.SecureDocumentBuilderFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.soap.addressing.client.ActionCallback;
@@ -34,7 +34,8 @@ import org.w3c.dom.Element;
 public class WSAddressingDOMTest extends ScenarioTestCase {
     @Override
     protected void runScenario(ApplicationContext context) throws Throwable {
-        DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        DocumentBuilder documentBuilder =
+                SecureDocumentBuilderFactory.newInstance().newDocumentBuilder();
         Document requestDocument = documentBuilder.newDocument();
         Element request = requestDocument.createElementNS("urn:test", "p:testRequest");
         request.setTextContent("test");

@@ -22,11 +22,12 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.xml.secure.SecureDocumentBuilderFactory;
+import org.apache.commons.xml.secure.SecureTransformerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -50,12 +51,12 @@ public class XOPSample extends MIMESample {
 
     public final InputStream getInlinedMessage() {
         try {
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory documentBuilderFactory = SecureDocumentBuilderFactory.newInstance();
             documentBuilderFactory.setNamespaceAware(true);
             Document rootPart = documentBuilderFactory.newDocumentBuilder().parse(getPart(0));
             process(rootPart.getDocumentElement());
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            TransformerFactory.newInstance()
+            SecureTransformerFactory.newInstance()
                     .newTransformer()
                     .transform(new DOMSource(rootPart), new StreamResult(baos));
             return new ByteArrayInputStream(baos.toByteArray());

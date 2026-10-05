@@ -22,17 +22,17 @@ import static com.google.common.truth.Truth.assertThat;
 
 import java.io.StringReader;
 import javax.xml.namespace.QName;
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import org.apache.axiom.truth.xml.spi.Event;
 import org.apache.axiom.truth.xml.spi.Traverser;
+import org.apache.commons.xml.secure.SecureXMLInputFactory;
 import org.junit.Test;
 
 public class StAXTraverserTest {
     @Test
     public void testFragment() throws Exception {
         XMLStreamReader reader =
-                XMLInputFactory.newInstance().createXMLStreamReader(new StringReader("<root><a><b/></a></root>"));
+                SecureXMLInputFactory.newInstance().createXMLStreamReader(new StringReader("<root><a><b/></a></root>"));
         reader.next();
         reader.next();
         Traverser t = new StAXTraverser(reader);

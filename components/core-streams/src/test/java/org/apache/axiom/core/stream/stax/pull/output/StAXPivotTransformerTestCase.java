@@ -29,6 +29,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.apache.axiom.core.stream.dom.input.DOMInput;
 import org.apache.axiom.ts.jaxp.xslt.XSLTImplementation;
 import org.apache.axiom.ts.xml.XMLSample;
+import org.apache.commons.xml.secure.SecureDocumentBuilderFactory;
 import org.junit.jupiter.api.function.Executable;
 import org.w3c.dom.Document;
 
@@ -41,8 +42,7 @@ public class StAXPivotTransformerTestCase implements Executable {
 
     @Override
     public void execute() throws Throwable {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
+        DocumentBuilderFactory factory = SecureDocumentBuilderFactory.newNSInstance();
         factory.setExpandEntityReferences(false);
         factory.setCoalescing(true);
         factory.setIgnoringComments(true);

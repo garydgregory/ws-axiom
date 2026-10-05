@@ -36,6 +36,7 @@ import org.apache.axiom.om.OMNode;
 import org.apache.axiom.om.OMProcessingInstruction;
 import org.apache.axiom.om.OMText;
 import org.apache.axiom.soap.SOAPFactory;
+import org.apache.commons.xml.secure.SecureDocumentBuilderFactory;
 import org.w3c.dom.Attr;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;
@@ -178,7 +179,7 @@ public interface DOMMetaFactory extends OMMetaFactory {
      * Create a new {@link DocumentBuilderFactory}. Since Axiom doesn't support non namespace aware
      * processing, the returned factory is always configured with <code>namespaceAware</code> set to
      * <code>true</code> (in contrast to the default settings used by {@link
-     * DocumentBuilderFactory#newInstance()}).
+     * SecureDocumentBuilderFactory#newInstance()}).
      *
      * @return the factory instance
      */

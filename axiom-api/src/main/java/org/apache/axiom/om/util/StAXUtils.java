@@ -40,6 +40,7 @@ import org.apache.axiom.util.stax.wrapper.ImmutableXMLInputFactory;
 import org.apache.axiom.util.stax.wrapper.ImmutableXMLOutputFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.xml.secure.SecureXMLInputFactory;
 
 /**
  * Utility class containing StAX related methods.
@@ -367,7 +368,7 @@ public class StAXUtils {
             Thread.currentThread().setContextClassLoader(classLoader);
         }
         try {
-            XMLInputFactory factory = XMLInputFactory.newInstance();
+            XMLInputFactory factory = SecureXMLInputFactory.newInstance();
             // Woodstox 3.x by default creates coalescing parsers. Even if this violates the StAX
             // specs (see WSTX-140), for compatibility with Woodstox 3.x, we always enable
             // coalescing mode. Note that we need to do that before loading

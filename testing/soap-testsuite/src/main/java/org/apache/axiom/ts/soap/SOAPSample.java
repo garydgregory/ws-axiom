@@ -23,12 +23,13 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.apache.axiom.testing.multiton.Instances;
 import org.apache.axiom.ts.xml.MessageContent;
 import org.apache.axiom.ts.xml.XMLSample;
+import org.apache.commons.xml.secure.SecureDocumentBuilderFactory;
+import org.apache.commons.xml.secure.SecureTransformerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -80,8 +81,7 @@ public class SOAPSample extends XMLSample {
     }
 
     public final Element getEnvelope() {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
+        DocumentBuilderFactory factory = SecureDocumentBuilderFactory.newNSInstance();
         try {
             return factory.newDocumentBuilder().parse(getInputStream()).getDocumentElement();
         } catch (Exception ex) {
@@ -114,7 +114,7 @@ public class SOAPSample extends XMLSample {
     public final InputSource getPayloadInputSource() {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
-            TransformerFactory.newInstance()
+            SecureTransformerFactory.newInstance()
                     .newTransformer()
                     .transform(new DOMSource(getPayload()), new StreamResult(baos));
         } catch (Exception ex) {

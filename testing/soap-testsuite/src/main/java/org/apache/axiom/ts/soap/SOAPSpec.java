@@ -26,8 +26,8 @@ import javax.xml.namespace.QName;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
 import org.apache.axiom.testing.multiton.Multiton;
+import org.apache.commons.xml.secure.SecureSchemaFactory;
 
 /** Describes the characteristics of a given SOAP version. */
 public abstract class SOAPSpec extends Multiton {
@@ -299,7 +299,7 @@ public abstract class SOAPSpec extends Multiton {
                         SOAPSpec.class.getResource("xsd/" + schemaResources[i]).toString());
             }
             try {
-                schema = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema")
+                schema = SecureSchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema")
                         .newSchema(sources);
             } catch (Exception ex) {
                 throw new Error(ex);

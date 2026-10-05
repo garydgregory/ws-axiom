@@ -20,7 +20,7 @@ package org.apache.axiom.testutils.stax;
 
 import java.io.StringReader;
 import java.util.Locale;
-import javax.xml.parsers.DocumentBuilderFactory;
+import org.apache.commons.xml.secure.SecureDocumentBuilderFactory;
 import org.xml.sax.InputSource;
 
 public interface Normalizer<T> {
@@ -37,7 +37,7 @@ public interface Normalizer<T> {
             if (content == null || content.trim().length() == 0) {
                 return null;
             } else {
-                return DocumentBuilderFactory.newInstance()
+                return SecureDocumentBuilderFactory.newInstance()
                         .newDocumentBuilder()
                         .parse(new InputSource(new StringReader("<!DOCTYPE root [" + content + "]><root/>")))
                         .getDoctype()

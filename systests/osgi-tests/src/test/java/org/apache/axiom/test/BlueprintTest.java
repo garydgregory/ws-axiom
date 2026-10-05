@@ -43,6 +43,7 @@ public class BlueprintTest {
                 url("link:classpath:org.apache.aries.blueprint.api.link"),
                 url("link:classpath:org.apache.aries.blueprint.core.link"),
                 url("link:classpath:org.apache.commons.commons-io.link"),
+                url("link:classpath:org.apache.commons.xml.secure.link"),
                 url("link:classpath:org.apache.james.apache-mime4j-core.link"),
                 url("link:classpath:org.apache.ws.commons.axiom.axiom-api.link"),
                 url("link:classpath:org.apache.ws.commons.axiom.axiom-dom.link"),

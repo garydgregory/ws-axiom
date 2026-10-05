@@ -50,6 +50,7 @@ public class FactoryTest {
                 url("link:classpath:stax2-api.link"),
                 url("link:classpath:com.fasterxml.woodstox.woodstox-core.link"),
                 url("link:classpath:org.apache.commons.commons-io.link"),
+                url("link:classpath:org.apache.commons.xml.secure.link"),
                 url("link:classpath:org.apache.james.apache-mime4j-core.link"),
                 url("link:classpath:org.apache.ws.commons.axiom.axiom-api.link"),
                 url("link:classpath:org.apache.ws.commons.axiom.axiom-impl.link"),

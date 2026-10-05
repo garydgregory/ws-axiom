@@ -23,12 +23,12 @@ import static org.junit.Assert.assertFalse;
 
 import java.io.File;
 import java.io.StringReader;
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
 import org.apache.axiom.om.OMDocType;
 import org.apache.axiom.om.OMDocument;
 import org.apache.axiom.om.OMXMLBuilderFactory;
 import org.apache.axiom.util.stax.dialect.StAXDialectDetector;
+import org.apache.commons.xml.secure.SecureXMLInputFactory;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -51,7 +51,7 @@ public class DialectTest {
      */
     @Test
     public void testStAXDialectDetector() throws Exception {
-        assertFalse(StAXDialectDetector.getDialect(XMLInputFactory.newInstance())
+        assertFalse(StAXDialectDetector.getDialect(SecureXMLInputFactory.newInstance())
                 .getName()
                 .equals("Unknown"));
         assertFalse(StAXDialectDetector.getDialect(XMLOutputFactory.newInstance())

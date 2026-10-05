@@ -19,7 +19,7 @@
 package org.apache.axiom.util.sax;
 
 import java.util.stream.Stream;
-import javax.xml.parsers.SAXParserFactory;
+import org.apache.commons.xml.secure.SecureSAXParserFactory;
 import org.junit.jupiter.api.DynamicNode;
 import org.junit.jupiter.api.TestFactory;
 
@@ -27,7 +27,7 @@ public class ValidationTest {
     @TestFactory
     public Stream<DynamicNode> tests() throws Exception {
         return XMLReaderTestSuite.create(
-                        SAXParserFactory.newInstance().newSAXParser().getXMLReader())
+                        SecureSAXParserFactory.newInstance().newSAXParser().getXMLReader())
                 .toDynamicNodes();
     }
 }

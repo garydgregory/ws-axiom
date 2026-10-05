@@ -43,6 +43,7 @@ public class DataHandlerUtilsTest {
                 url("link:classpath:jakarta.activation-api.link"),
                 url("link:classpath:jakarta.mail-api.link"),
                 url("link:classpath:org.apache.commons.commons-io.link"),
+                url("link:classpath:org.apache.commons.xml.secure.link"),
                 url("link:classpath:org.apache.james.apache-mime4j-core.link"),
                 url("link:classpath:org.apache.ws.commons.axiom.axiom-api.link"),
                 url("link:classpath:org.apache.ws.commons.axiom.axiom-jakarta-activation.link"),

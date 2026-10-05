@@ -31,6 +31,7 @@ import org.apache.axiom.om.OMAbstractFactory;
 import org.apache.axiom.om.OMMetaFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.xml.secure.SecureDocumentBuilderFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
@@ -83,8 +84,7 @@ final class ImplementationFactory {
         List<Implementation> implementations = new ArrayList<>();
         try {
             // Since this code is used to discover Axiom implementations, we have to use DOM here.
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            dbf.setNamespaceAware(true);
+            DocumentBuilderFactory dbf = SecureDocumentBuilderFactory.newNSInstance();
             // Use URL#openStream() (instead of converting the URL to a String and passing it to the
             // parser) to avoid situations where the parser can't reconstruct/interpret the URL.
             InputStream in = url.openStream();

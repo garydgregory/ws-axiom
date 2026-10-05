@@ -25,6 +25,7 @@ import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.axiom.om.OMAbstractFactory;
 import org.apache.axiom.soap.SOAPFactory;
+import org.apache.commons.xml.secure.SecureDocumentBuilderFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.ws.soap.SoapHeaderElement;
 import org.springframework.ws.soap.axiom.AxiomSoapMessage;
@@ -42,9 +43,7 @@ public class AxiomSoapMessageTest {
         AxiomSoapMessageFactory mf = new AxiomSoapMessageFactory();
         mf.afterPropertiesSet();
         AxiomSoapMessage message = mf.createWebServiceMessage();
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setNamespaceAware(true);
-        Document document = dbf.newDocumentBuilder()
+        Document document = SecureDocumentBuilderFactory.newNSInstance().newDocumentBuilder()
                 .parse(AxiomSoapMessageTest.class
                         .getResource("soap-message.xml")
                         .toString());

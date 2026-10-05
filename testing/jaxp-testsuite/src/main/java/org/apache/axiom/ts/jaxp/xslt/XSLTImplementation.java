@@ -20,7 +20,6 @@ package org.apache.axiom.ts.jaxp.xslt;
 
 import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
@@ -28,6 +27,8 @@ import javax.xml.transform.stax.StAXSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import org.apache.axiom.testing.multiton.Multiton;
+import org.apache.commons.xml.secure.SecureTransformerFactory;
+import org.apache.commons.xml.secure.SecureXMLInputFactory;
 import org.xml.sax.ext.LexicalHandler;
 
 /** Specifies an XSLT implementation for use in a matrix test. */
@@ -35,7 +36,7 @@ public abstract class XSLTImplementation extends Multiton {
     public static final XSLTImplementation JRE = new XSLTImplementation("jre") {
         @Override
         public TransformerFactory newTransformerFactory() {
-            return TransformerFactory.newDefaultInstance();
+            return SecureTransformerFactory.newDefaultInstance();
         }
     };
 
@@ -94,7 +95,7 @@ public abstract class XSLTImplementation extends Multiton {
         if (supportsStAXSource == null) {
             try {
                 StAXSource source = new StAXSource(
-                        XMLInputFactory.newInstance().createXMLStreamReader(new StringReader("<root/>")));
+                        SecureXMLInputFactory.newInstance().createXMLStreamReader(new StringReader("<root/>")));
                 StreamResult result = new StreamResult(new ByteArrayOutputStream());
                 newTransformerFactory().newTransformer().transform(source, result);
                 supportsStAXSource = true;

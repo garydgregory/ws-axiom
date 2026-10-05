@@ -29,6 +29,7 @@ import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.OMFactory;
 import org.apache.axiom.om.OMNamedInformationItem;
 import org.apache.axiom.om.OMXMLBuilderFactory;
+import org.apache.commons.xml.secure.SecureSAXParserFactory;
 import org.junit.jupiter.api.function.Executable;
 import org.xml.sax.InputSource;
 
@@ -45,8 +46,7 @@ public class TestGetNamespaceNormalizedWithSAXSource implements Executable {
 
     @Override
     public void execute() throws Throwable {
-        SAXParserFactory saxFactory = SAXParserFactory.newInstance();
-        saxFactory.setNamespaceAware(true);
+        SAXParserFactory saxFactory = SecureSAXParserFactory.newNSInstance();
         saxFactory.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
         SAXParser parser = saxFactory.newSAXParser();
         SAXSource source = new SAXSource(parser.getXMLReader(), new InputSource(new StringReader("<root xmlns=''/>")));

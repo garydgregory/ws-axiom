@@ -22,7 +22,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.StringReader;
 import java.io.StringWriter;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.apache.axiom.om.OMContainer;
@@ -33,6 +32,7 @@ import org.apache.axiom.testing.multiton.Multiton;
 import org.apache.axiom.testutils.suite.Dimension;
 import org.apache.axiom.testutils.suite.LabelTarget;
 import org.apache.axiom.ts.jaxp.dom.DOMImplementation;
+import org.apache.commons.xml.secure.SecureTransformerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
@@ -81,7 +81,9 @@ public abstract class ElementContext extends Multiton implements Dimension {
             Element parent = document.createElementNS(null, "parent");
             parent.appendChild(document.getDocumentElement());
             StringWriter sw = new StringWriter();
-            TransformerFactory.newInstance().newTransformer().transform(new DOMSource(parent), new StreamResult(sw));
+            SecureTransformerFactory.newInstance()
+                    .newTransformer()
+                    .transform(new DOMSource(parent), new StreamResult(sw));
             return new InputSource(new StringReader(sw.toString()));
         }
     };
@@ -114,7 +116,9 @@ public abstract class ElementContext extends Multiton implements Dimension {
             parent.appendChild(document.getDocumentElement());
             parent.appendChild(document.createElementNS(null, "sibling"));
             StringWriter sw = new StringWriter();
-            TransformerFactory.newInstance().newTransformer().transform(new DOMSource(parent), new StreamResult(sw));
+            SecureTransformerFactory.newInstance()
+                    .newTransformer()
+                    .transform(new DOMSource(parent), new StreamResult(sw));
             return new InputSource(new StringReader(sw.toString()));
         }
     };

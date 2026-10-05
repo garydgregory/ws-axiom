@@ -49,6 +49,11 @@
     </dependencyManagement>
     <dependencies>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-secure-xml</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>axiom-impl</artifactId>
             <version>${project.version}</version>
@@ -111,7 +116,7 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <includeArtifactIds>axiom-api,axiom-impl,woodstox-core,stax2-api</includeArtifactIds>
+                            <includeArtifactIds>axiom-api,axiom-impl,woodstox-core,stax2-api,commons-secure-xml</includeArtifactIds>
                             <outputDirectory>${project.build.directory}/deps</outputDirectory>
                         </configuration>
                     </execution>

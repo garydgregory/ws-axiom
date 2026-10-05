@@ -32,6 +32,7 @@ import org.apache.axiom.om.OMMetaFactory;
 import org.apache.axiom.om.OMXMLBuilderFactory;
 import org.apache.axiom.soap.SOAPEnvelope;
 import org.apache.axiom.soap.SOAPModelBuilder;
+import org.apache.commons.xml.secure.SecureSchemaFactory;
 import org.w3c.dom.Element;
 
 public class ValidateSample extends TestCase {
@@ -40,7 +41,7 @@ public class ValidateSample extends TestCase {
         SOAPModelBuilder builder = OMXMLBuilderFactory.createSOAPModelBuilder(in, "UTF-8");
         SOAPEnvelope envelope = builder.getSOAPEnvelope();
         OMElement bodyContent = envelope.getBody().getFirstElement();
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        SchemaFactory schemaFactory = SecureSchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Schema schema = schemaFactory.newSchema(schemaUrl);
         Validator validator = schema.newValidator();
         validator.validate(bodyContent.getSAXSource(true));
@@ -58,7 +59,7 @@ public class ValidateSample extends TestCase {
         SOAPModelBuilder builder = OMXMLBuilderFactory.createSOAPModelBuilder(mf, in, "UTF-8");
         SOAPEnvelope envelope = builder.getSOAPEnvelope();
         OMElement bodyContent = envelope.getBody().getFirstElement();
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        SchemaFactory schemaFactory = SecureSchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Schema schema = schemaFactory.newSchema(schemaUrl);
         Validator validator = schema.newValidator();
         validator.validate(new DOMSource((Element) bodyContent));
